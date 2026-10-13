@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Pinheiro_pack</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Bebas Neue", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: #fff;
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      background: rgba(10, 10, 10, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #222;
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 25px;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      color: #d4af37;
+    }
+
+    nav {
+      display: flex;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      text-transform: uppercase;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #d4af37;
+    }
+
+    .cart {
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.75)),
+        url("pin.png")
+        center/cover;
+      padding: 100px 20px 40px;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .hero span {
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      font-size: 13px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 7vw, 90px);
+      line-height: 1;
+      margin: 20px 0;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      color: #ddd;
+      font-size: 17px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 35px;
+      background: #d4af37;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: .3s;
+      border-radius: 30px;
+    }
+
+    .btn:hover {
+      background: #fff;
+      transform: translateY(-3px);
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 100px 25px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-title span {
+      color: #d4af37;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-top: 12px;
+    }
+
+    /* CATEGORIAS */
+    .categories {
+      background: #111;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .category {
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .category img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .6s;
+    }
+
+    .category:hover img {
+      transform: scale(1.08);
+    }
+
+    .category::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.85));
+    }
+
+    .category-info {
+      position: absolute;
+      z-index: 2;
+      bottom: 30px;
+      left: 30px;
+    }
+
+    .category-info h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .category-info p {
+      color: #ccc;
+    }
+
+    /* PRODUTOS */
+    .products {
+      background: #0b0b0b;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: #151515;
+      overflow: hidden;
+      transition: .3s;
+    }
+
+    .product:hover {
+      transform: translateY(-8px);
+    }
+
+    .product-image {
+      height: 360px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .5s;
+    }
+
+    .product:hover img {
+      transform: scale(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background: #d4af37;
+      color: #000;
+      padding: 7px 12px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .product-info {
+      padding: 20px;
+    }
+
+    .product-info h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+
+    .product-info p {
+      color: #999;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      color: #d4af37;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    /* BANNER */
+    .banner {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.2)),
+        url("https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?auto=format&fit=crop&w=2000&q=90")
+        center/cover;
+    }
+
+    .banner-content {
+      max-width: 550px;
+    }
+
+    .banner-content span {
+      color: #d4af37;
+      letter-spacing: 4px;
+      font-size: 13px;
+    }
+
+    .banner h2 {
+      font-size: 55px;
+      margin: 15px 0;
+    }
+
+    .banner p {
+      color: #ccc;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    /* SOBRE */
+    .about {
+      background: #111;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 550px;
+      object-fit: cover;
+    }
+
+    .about-text span {
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+    }
+
+    .about-text h2 {
+      font-size: 45px;
+      margin: 15px 0 25px;
+    }
+
+    .about-text p {
+      color: #aaa;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+  
+    .newsletter {
+      text-align: center;
+      background: #d4af37;
+      color: #000;
+    }
+
+    .newsletter h2 {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .newsletter p {
+      margin-bottom: 25px;
+    }
+
+    .newsletter form {
+      display: flex;
+      max-width: 550px;
+      margin: auto;
+    }
+
+    .newsletter input {
+      flex: 1;
+      border: none;
+      padding: 17px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .newsletter button {
+      border: none;
+      padding: 0 25px;
+      background: #000;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+  
+    footer {
+      background: #050505;
+      padding: 60px 25px 25px;
+    }
+
+    .footer-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+    }
+
+    .footer-logo {
+      color: #d4af37;
+      font-size: 25px;
+      letter-spacing: 4px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    footer p {
+      color: #777;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    footer h3 {
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 12px;
+    }
+
+    footer a {
+      color: #777;
+      text-decoration: none;
+      font-size: 14px;
+      transition: .1s;
+    }
+
+    footer a:hover {
+      color: #d4af37;
+    }
+
+    .copyright {
+      max-width: 1200px;
+      margin: auto;
+      border-top: 1px solid #222;
+      padding-top: 25px;
+      text-align: center;
+      color: #555;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-image {
+        height: 420px;
+      }
+
+      .banner h2 {
+        font-size: 40px;
+      }
+
+      .newsletter form {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .newsletter button {
+        padding: 15px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar">
+      <div class="logo">Pinheiro_pack</div>
+
+      <nav>
+        <a href="#inicio">Início</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#produtos">Coleção</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <div class="cart">🛒</div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <span>Nossa Coleção</span>
+
+        <h1>Ache seu estilo aqui</h1>
+
+        
+
+        <a href="#produtos" class="btn">Comprar agora</a>
+      </div>
+    </section>
+
+    <!-- CATEGORIAS -->
+    <section class="categories" id="categorias">
+      <div class="container">
+
+        <div class="section-title">
+          <span>Dê uma olhada nas nossas roupas!</span>
+          <h2>Encontre o que gosta aqui</h2>
+        </div>
+
+        <div class="category-grid">
+
+          <div class="category">
+            <img src="kit.webp" alt="Roupas casuais">
+            <div class="category-info">
+              <h3>Camisetas</h3>
+            </div>
+          </div>
+
+          <div class="category">
+            <img src="da66626396fa02a0ddbfc79a323c8f8b_b1230618-ef75-4d86-a801-ba5cf134ac5c.webp" alt="Moda social masculina">
+            <div class="category-info">
+              <h3>Calças</h3>
+             </div>
+          </div>
+
+          <div class="category">
+            <img src="double_zip_preto.webp" alt="Moda masculina premium">
+            <div class="category-info">
+              <h3>Moletom</h3>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="products" id="produtos">
+      <div class="container">
+
+        <div class="section-title">
+          <span>Escolhas da semana</span>
+          <h2>Mais vendidos</h2>
+        </div>
+
+        <div class="product-grid">
+
+          <div class="product">
+            <div class="product-image">
+              <span class="badge">NOVO</span>
+              <img src="branca.webp" alt="Camisa masculina">
+            </div>
+            <div class="product-info">
+              <h3>Camiseta Over Branca</h3>
+              <div class="price">R$ 99,99</div>
+            </div>
+          </div>
+
+          <div class="product">
+            <div class="product-image">
+              <span class="badge">BEST SELLER</span>
+              <img src="moletom.webp" alt="Jaqueta masculina">
+            </div>
+            <div class="product-info">
+              <h3>Moletom Estampado</h3>
+              <div class="price">R$ 199,99</div>
+            </div>
+          </div>
+
+          <div class="product">
+            <div class="product-image">
+              <img src="calca-jeans-baggy.webp" alt="Calça masculina">
+            </div>
+            <div class="product-info">
+              <h3>Calça Baggy</h3>
+              <div class="price">R$ 229,90</div>
+            </div>
+          </div>
+
+          <div class="product">
+            <div class="product-image">
+              <span class="badge">NOVO</span>
+              <img src="jorts3.webp" alt="Blazer masculino">
+            </div>
+            <div class="product-info">
+              <h3>Jorts Camuflado</h3>
+              <div class="price">229,50</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    
+    <!-- SOBRE -->
+    <section class="about" id="sobre">
+      <div class="container">
+
+        <div class="about-grid">
+
+          <div class="about-image">
+            <img src="outfit.jpg" alt="Homem usando moda ">
+          </div>
+
+          <div class="about-text">
+            <span>Nosso Estilo</span>
+
+
+            <p>
+              A Pinheiro_pack nasceu para representar uma nova geração
+             que não seguem tendências, nós criamos nosso
+              próprio estilo.
+            </p>
+
+            <p>
+              Selecionamos materiais de alta qualidade e designs
+              contemporâneos para criar peças versáteis, e que todos
+              possam usar.
+            </p>
+
+            <a href="#contato" class="btn">Conheça a marca</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter" id="contato">
+      <div class="container">
+        <h2>Faça parte da Pinheiro_pack</h2>
+
+        <p>
+          Cadastre seu e-mail e receba novidades e ofertas exclusivas.
+        </p>
+
+        <form>
+          <input type="email" placeholder="Seu melhor e-mail" required>
+          <button type="submit">CADASTRAR</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+
+      <div>
+        <div class="footer-logo">Pinheiro_pack</div>
+
+        <p>
+          Moda masculina para quem entende que estilo não é apenas
+          o que você veste, mas a forma como você se apresenta ao mundo.
+        </p>
+      </div>
+
+      <div>
+        <h3>Loja</h3>
+        <ul>
+          <li><a href="#produtos">Novidades</a></li>
+          <li><a href="#produtos">Mais vendidos</a></li>
+          <li><a href="#categorias">Casual</a></li>
+          <li><a href="#categorias">Street</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Ajuda</h3>
+        <ul>
+          <li><a href="#">Minha conta</a></li>
+          <li><a href="#">Pedidos</a></li>
+          <li><a href="#">Trocas e devoluções</a></li>
+          <li><a href="#">Entrega</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>Contato</h3>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">WhatsApp</a></li>
+          <li><a href="#">E-mail</a></li>
+          <li><a href="#">Atendimento</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 PINHEIRO — Todos os direitos reservados.
+    </div>
+  </footer>
+
+</body>
+</html>
